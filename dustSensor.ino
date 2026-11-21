@@ -21,6 +21,11 @@ void loop(){
   Voltage = Vo_value*5.0 / 1023.0;
   dustDensity = (Voltage - 0.5)/0.005;
 
+  // 공기가 깨끗하면 전압이 0.5V보다 낮아서 음수가 나옴
+  if (dustDensity < 0) {
+    dustDensity = 0;
+  }
+
   Serial.print("dust=" );
   Serial.println(dustDensity);
 
